@@ -4,9 +4,6 @@ from django.urls import reverse
 # Create your models here.
 
 
-# Create your models here.
-
-
 class Tag(models.Model):
     name = models.CharField(
         max_length=31, unique=True)
@@ -30,8 +27,10 @@ class Item(models.Model):
          unique=True,
          help_text='A label for URL conﬁg.')
     description = models.TextField()
-    estimated_price = models.CharField(
+    quantity = models.CharField(
         max_length=31, db_index=True)
+    # estimated_price = models.CharField(
+    #     max_length=31, db_index=True)
     entry_date = models.DateField(
         'date of entry')
     tags = models.ManyToManyField(Tag, blank=True)
