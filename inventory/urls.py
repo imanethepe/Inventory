@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from goods import urls as goods_url
+from .views import redirect_root
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include(goods_url))
+    path('', redirect_root),
+    path('', include(goods_url)),
 ]
