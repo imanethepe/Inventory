@@ -1,0 +1,45 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct 24 14:00:19 2023
+
+@author: Imanethepe
+"""
+
+ {% extends parent_template|default:"goods/base_goods.html" %}
+
+ {% block title %}
+ {{ block.super }} - {{ tag.name|title }}
+ {% endblock %}
+
+ {% block content %}
+  <ul>
+     <li>
+       <a href="">
+         Update Tag</a></li>
+     <li>
+       <a href="">
+         Delete Tag</a></li>
+  </ul>
+
+  <h2>{{ tag.name|title }}</h2>
+   {% if tag.item_set.all %}
+    <section>
+      <h3>item{{ tag.item_set.count|pluralize }}</h3>
+      <p> 
+        Tag is associated with 
+        {{ tag.item_set.count }} 
+        item{{ tag.item_set.count|pluralize }}.
+      </p>
+      <ul>
+        {% for item in tag.item_set.all %}
+         <li><a href="{{item.get_absolute_url}}">
+           {{ item.name }}
+         </a></li>
+       {% endfor %}
+     </ul>
+    </section>
+ {% endif %}
+    {% if not tag.item_set.all %}
+      <p>This tag is not related to any content.</p>
+    {% endif %}
+{% endblock %}

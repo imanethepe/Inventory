@@ -22,3 +22,27 @@ class ItemList(View):
             request,
             'goods/item_list.html',
             {'item_list': Item.objects.all()})
+
+
+class TagDetail(View):
+    """Get and post requests of a tag"""
+
+    def get(self, request, slug):
+        tag = get_object_or_404(
+            Tag, slug=slug)
+        return render(
+            request,
+            'goods/tag_detail.html',
+            {'tag': tag})
+
+
+class ItemDetail(View):
+    """Get and post requests of a item"""
+
+    def get(self, request, slug):
+        item = get_object_or_404(
+            Item, slug=slug)
+        return render(
+            request,
+            'goods/item_detail.html',
+            {'item': item})

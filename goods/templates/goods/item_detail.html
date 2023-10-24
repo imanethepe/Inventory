@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct 24 14:00:19 2023
+
+@author: Imanethepe
+"""
+{% extends parent_template|default:"goods/base_goods.html" %} 
+
+{% block title %}
+{{ block.super }} - {{ item.name|title }}
+{% endblock %}
+
+{% block content %}
+<article>
+
+  <h2>{{ item.name|title }}-{{item.quantity}}</h2>
+  <dl>      
+    <dt>Tag{{ item.tags.count|pluralize }}</dt>
+      {% for tag in item.tags.all %}
+      <dd><a href="{{tag.get_absolute_url}}">
+        {{ tag.name|title }}
+      </a></dd>
+    {% endfor %}
+  
+  </dl>
+  
+  {{ item.description|linebreaks }}
+  
+  <ul>
+     <li>
+       <a href="">
+         Update Item</a></li>
+     <li>
+       <a href="">
+         Delete Item</a></li>
+  </ul>
+ 
+ </article>
+{% endblock %}
