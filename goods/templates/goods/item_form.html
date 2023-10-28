@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Oct 28 15:21:00 2023
+
+@author: Imanethepe
+"""
+
+{% extends parent_template|default:"goods/base_goods.html" %}
+
+{% block title %}
+{{ block.super }} - New Item
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div> 
+      <form
+          action="{% url 'goods_item_create' %}"
+          method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">
+            New Item</button>
+     </form>
+   </div>
+ </div>  
+{% endblock %}

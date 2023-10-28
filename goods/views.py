@@ -2,6 +2,8 @@ from django.shortcuts import (
     render, get_object_or_404)
 from django.views.generic import View
 from .models import Tag, Item
+from .forms import TagForm, ItemForm
+from .utils import ObjectCreateMixin
 
 
 class TagList(View):
@@ -46,3 +48,17 @@ class ItemDetail(View):
             request,
             'goods/item_detail.html',
             {'item': item})
+
+
+class TagCreate(ObjectCreateMixin, View):
+    """Post request of a new tag"""
+
+    form_class = TagForm
+    template_name = 'goods/tag_form.html'
+
+
+class ItemCreate(ObjectCreateMixin, View):
+    """Post request of a new item"""
+
+    form_class = ItemForm
+    template_name = 'goods/item_form.html'

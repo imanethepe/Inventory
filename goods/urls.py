@@ -8,7 +8,8 @@ Created on Sun Oct 22 14:40:00 2023
 from django.urls import path, re_path
 from .views import (
     TagList, ItemList,
-    TagDetail, ItemDetail)
+    TagDetail, ItemDetail,
+    TagCreate, ItemCreate)
 
 urlpatterns = [
     path(r'tag/',
@@ -23,5 +24,10 @@ urlpatterns = [
     re_path(r'item/(?P<slug>[\w\-]+)/$',
             ItemDetail.as_view(),
             name='goods_item_detail'),
-
+    path(r'tag/create',
+         TagCreate.as_view(),
+         name='goods_tag_create'),
+    path(r'item/create',
+         ItemCreate.as_view(),
+         name='goods_item_create'),
 ]
