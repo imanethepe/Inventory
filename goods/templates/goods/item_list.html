@@ -22,7 +22,7 @@ Created on Sun Oct 22 14:15:00 2023
    {% for item in item_list %}
     <li>
       <a href="{{item.get_absolute_url}}">
-        {{ item.name }}</a>
+        {{ item.name }}-{{item.quantity}}</a>
       <ul>
         <li>
            <a href="">

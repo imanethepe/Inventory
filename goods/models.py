@@ -20,6 +20,14 @@ class Tag(models.Model):
         return reverse(
             'goods_tag_detail', kwargs={'slug': self.slug})
 
+    def get_update_url(self):
+        return reverse(
+            'goods_tag_update', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse(
+            'goods_tag_delete', kwargs={'slug': self.slug})
+
 
 class Item(models.Model):
     name = models.CharField(
@@ -45,3 +53,11 @@ class Item(models.Model):
     def get_absolute_url(self):
         return reverse(
             'goods_item_detail', kwargs={'slug': self.slug})
+
+    def get_update_url(self):
+        return reverse(
+            'goods_item_update', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse(
+            'goods_item_delete', kwargs={'slug': self.slug})

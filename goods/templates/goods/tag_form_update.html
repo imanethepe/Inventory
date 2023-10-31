@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Oct 1 15:56:00 2023
+
+@author: Imanethepe
+"""
+
+{% extends parent_template|default:"goods/base_goods.html" %}
+
+
+{% block title %}
+{{ block.super }} - Update Tag
+{% endblock %}
+
+{% block content %}
+  <div>
+    <div>
+     <form
+         action="{{ tag.get_update_url }}"
+         method="post">
+       {% csrf_token %}
+       {{ form.as_p }}
+       <button type="submit">
+         Update Tag</button>
+     </form>
+    </div>
+  </div> 
+{% endblock %}

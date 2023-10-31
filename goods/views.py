@@ -1,9 +1,12 @@
 from django.shortcuts import (
     render, get_object_or_404)
 from django.views.generic import View
+from django.urls import reverse_lazy
 from .models import Tag, Item
 from .forms import TagForm, ItemForm
-from .utils import ObjectCreateMixin
+from .utils import (
+    ObjectCreateMixin, ObjectUpdateMixin,
+    ObjectDeleteMixin)
 
 
 class TagList(View):
@@ -62,3 +65,37 @@ class ItemCreate(ObjectCreateMixin, View):
 
     form_class = ItemForm
     template_name = 'goods/item_form.html'
+
+
+class TagUpdate(ObjectUpdateMixin, View):
+    """Post request to update a tag"""
+
+    form_class = TagForm
+    model = Tag
+    template_name = 'goods/tag_form_update.html'
+
+
+class ItemUpdate(ObjectUpdateMixin, View):
+    """Post request to update an item"""
+
+    form_class = ItemForm
+    model = Item
+    template_name = 'goods/item_form_update.html'
+
+
+class TagDelete(ObjectDeleteMixin, View):
+    """Post request to delete a tag"""
+
+    model = Tag
+    success_url = reverse_lazy(
+        'goods_tag_list')
+    template_name = 'goods/tag_form_delete.html'
+
+
+class ItemDelete(ObjectDeleteMixin, View):
+    """Post request to delete an item"""
+
+    model = Item
+    success_url = reverse_lazy(
+        'goods_item_list')
+    template_name = 'goods/item_form_delete.html'

@@ -9,7 +9,9 @@ from django.urls import path, re_path
 from .views import (
     TagList, ItemList,
     TagDetail, ItemDetail,
-    TagCreate, ItemCreate)
+    TagCreate, ItemCreate,
+    TagUpdate, ItemUpdate,
+    TagDelete, ItemDelete)
 
 urlpatterns = [
     path(r'tag/',
@@ -30,4 +32,16 @@ urlpatterns = [
     path(r'item/create',
          ItemCreate.as_view(),
          name='goods_item_create'),
+    re_path(r'tag/update/(?P<slug>[\w\-]+)/$',
+            TagUpdate.as_view(),
+            name='goods_tag_update'),
+    re_path(r'item/update/(?P<slug>[\w\-]+)/$',
+            ItemUpdate.as_view(),
+            name='goods_item_update'),
+    re_path(r'tag/delete/(?P<slug>[\w\-]+)/$',
+            TagDelete.as_view(),
+            name='goods_tag_delete'),
+    re_path(r'item/delete/(?P<slug>[\w\-]+)/$',
+            ItemDelete.as_view(),
+            name='goods_item_delete'),
 ]
