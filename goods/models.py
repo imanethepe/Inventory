@@ -38,7 +38,7 @@ class Item(models.Model):
          help_text='A label for URL conﬁg.')
     description = models.TextField()
     quantity = models.IntegerField(default=0)
-    # estimated_price = models.IntegerField(default=0)
+    estimated_price = models.IntegerField(default=0)
     entry_date = models.DateField(
         'date of entry')
     tags = models.ManyToManyField(Tag, blank=True)

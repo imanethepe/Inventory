@@ -14,10 +14,10 @@ Created on Tue Oct 24 14:00:19 2023
  {% block content %}
   <ul>
      <li>
-       <a href="">
+       <a href="{{tag.get_update_url}}">
          Update Tag</a></li>
      <li>
-       <a href="">
+       <a href="{{tag.get_delete_url}}">
          Delete Tag</a></li>
   </ul>
 
