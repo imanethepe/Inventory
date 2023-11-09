@@ -1,5 +1,6 @@
 from django.shortcuts import (
     render, get_object_or_404)
+from django.db.models import F
 from django.views.generic import View
 from django.urls import reverse_lazy
 from .models import Tag, Item
@@ -23,6 +24,8 @@ class ItemList(View):
     """Get request of the list of items"""
 
     def get(self, request):
+        Item.objects.all().update(estimated_price=F('estimated_price') *
+                                  F('quantity'))
         return render(
             request,
             'goods/item_list.html',

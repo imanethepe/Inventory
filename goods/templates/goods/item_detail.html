@@ -13,11 +13,24 @@ Created on Tue Oct 24 14:00:19 2023
 {% block content %}
   <section>
 
-  <h2>{{ item.name|title }}-Quantity: {{item.quantity}}</h2>
+  <h2>{{ item.name|title }}</h2>
   
   <h3>Description</h3> 
   
   {{ item.description|linebreaks }}
+  
+  <h3>Quantity: {{item.quantity}}</h3>
+  
+  <h3>Estimated Price: {{item.estimated_price}}</h3>
+  
+  <ul>
+     <li>
+       <a href="{{item.get_update_url}}">
+         Update Item</a></li>
+     <li>
+       <a href="{{item.get_delete_url}}">
+         Delete Item</a></li>
+  </ul>
   
   <dl>      
     <dt>Tag{{ item.tags.count|pluralize }}</dt>
@@ -28,14 +41,5 @@ Created on Tue Oct 24 14:00:19 2023
     {% endfor %}
   
   </dl>
-  
-  <ul>
-     <li>
-       <a href="{{item.get_update_url}}">
-         Update Item</a></li>
-     <li>
-       <a href="{{item.get_delete_url}}">
-         Delete Item</a></li>
-  </ul>
   </section>
 {% endblock %}

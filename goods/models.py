@@ -39,6 +39,7 @@ class Item(models.Model):
     description = models.TextField()
     quantity = models.IntegerField(default=0)
     estimated_price = models.IntegerField(default=0)
+#    estimated_price *= quantity
     entry_date = models.DateField(
         'date of entry')
     tags = models.ManyToManyField(Tag, blank=True)
