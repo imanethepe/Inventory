@@ -38,8 +38,11 @@ class Item(models.Model):
          help_text='A label for URL conﬁg.')
     description = models.TextField()
     quantity = models.IntegerField(default=0)
-    estimated_price = models.IntegerField(default=0)
-#    estimated_price *= quantity
+    estimated_price = models.DecimalField(decimal_places=2, max_digits=5)
+    total_item_estimated_price = models.DecimalField(
+        decimal_places=2, max_digits=5)
+    total_inventory_value = models.DecimalField(
+        decimal_places=2, max_digits=5)
     entry_date = models.DateField(
         'date of entry')
     tags = models.ManyToManyField(Tag, blank=True)
