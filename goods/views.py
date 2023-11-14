@@ -1,9 +1,9 @@
 from django.shortcuts import (
     render, get_object_or_404)
-from django.db.models import F,  ExpressionWrapper
+from django.db.models import F,  ExpressionWrapper, DecimalField
 from django.views.generic import View
 from django.urls import reverse_lazy
-from .models import Tag, Item
+from .models import Tag, Item, Value
 from .forms import TagForm, ItemForm
 from .utils import (
     ObjectCreateMixin, ObjectUpdateMixin,
@@ -24,10 +24,9 @@ class ItemList(View):
     """Get request of the list of items"""
 
     def get(self, request):
-        # Item.objects.all().update(estimated_price=F('estimated_price') *
-        #                                  F('quantity'))
-        Item.objects.annotate(
-            total_item_estimated_price=F('estimated_price') * F('quantity'))
+        Item.objects.all().update(
+            total_item_estimated_price=F('estimated_price') *
+            F('quantity'))
         return render(
             request,
             'goods/item_list.html',
@@ -104,3 +103,18 @@ class ItemDelete(ObjectDeleteMixin, View):
     success_url = reverse_lazy(
         'goods_item_list')
     template_name = 'goods/item_form_delete.html'
+
+
+class ValueList(View):
+    """Get request of the value of the list"""
+
+    def get(self, request):
+        Value.objects.update(
+            value=sum(F('total_item_estimated_price')))
+        value = get_object_or_404(
+             Value)
+
+        return render(
+            request,
+            'goods/item_list.html',
+            {'value': value})

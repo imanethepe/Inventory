@@ -11,7 +11,8 @@ from .views import (
     TagDetail, ItemDetail,
     TagCreate, ItemCreate,
     TagUpdate, ItemUpdate,
-    TagDelete, ItemDelete)
+    TagDelete, ItemDelete,
+    ValueList)
 
 urlpatterns = [
     path(r'tag/',
@@ -44,4 +45,7 @@ urlpatterns = [
     re_path(r'item/delete/(?P<slug>[\w\-]+)/$',
             ItemDelete.as_view(),
             name='goods_item_delete'),
+    path(r'item/',
+         ValueList.as_view(),
+         name='goods_item_list'),
 ]

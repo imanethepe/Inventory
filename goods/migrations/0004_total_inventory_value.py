@@ -16,7 +16,7 @@ def remove_total_inventory_value_data(apps, schema_editor):
     Item = apps.get_model(
         'goods', 'Item')
 
-    Item.objects.update(total_inventory_value=0)
+    Item.objects.update(total_inventory_value=0.000)
 
 
 class Migration(migrations.Migration):
@@ -29,7 +29,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='Item',
             name='total_inventory_value',
-            field=models.DecimalField(decimal_places=2, max_digits=5),
+            field=models.DecimalField(
+                decimal_places=2, max_digits=5, default=0.000),
             ),
         migrations.RunPython(
             add_total_inventory_value_data,
