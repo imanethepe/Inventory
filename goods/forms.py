@@ -40,7 +40,8 @@ class ItemForm(
 
     class Meta:
         model = Item
-        ﬁelds = '__all__'
+#        ﬁelds = '__all__'
+        exclude = ['total_inventory_value']
 
     def clean_name(self):
         return self.cleaned_data['name'].lower()

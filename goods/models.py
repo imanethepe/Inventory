@@ -42,6 +42,8 @@ class Item(models.Model):
         decimal_places=2, max_digits=5, default=0.000)
     total_item_estimated_price = models.DecimalField(
           decimal_places=2, max_digits=5, default=0.000)
+    total_inventory_value = models.DecimalField(
+          decimal_places=2, max_digits=5, default=0.000)
     entry_date = models.DateField(
         'date of entry')
     tags = models.ManyToManyField(Tag, blank=True)
@@ -64,8 +66,3 @@ class Item(models.Model):
     def get_delete_url(self):
         return reverse(
             'goods_item_delete', kwargs={'slug': self.slug})
-
-
-class Value(models.Model):
-    total_inventory_value = models.DecimalField(
-          decimal_places=2, max_digits=5, default=0.000)
