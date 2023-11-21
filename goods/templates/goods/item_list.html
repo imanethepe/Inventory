@@ -11,6 +11,7 @@ Created on Sun Oct 22 14:15:00 2023
 {% endblock %}
 
 {% block content %}
+{% load template_filters %}
  
  <h2>Items List</h2>
   <div>
@@ -35,6 +36,8 @@ Created on Sun Oct 22 14:15:00 2023
    {% empty %}
      <li><em>No Items in  list</em></li>
    {% endfor %}
- <h4>Total Inventory Value: {{item_list.total_inventory_value}}</h4>
- </ul>
+   {% for key, value in data.items %}
+ <h4>Total Inventory Value: {{value}}</h4> 
+   {% endfor %}
+</ul>
 {% endblock %}
