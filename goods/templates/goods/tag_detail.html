@@ -16,19 +16,19 @@ Created on Tue Oct 24 14:00:19 2023
   <h2>{{ tag.name|title }}</h2>
    {% if tag.item_set.all %}
     <section>
-      <h3>item{{ tag.item_set.count|pluralize }}</h3>
-      <p> 
+      <dl>      
+        <dt>
         Tag is associated with 
         {{ tag.item_set.count }} 
-        item{{ tag.item_set.count|pluralize }}.
-      </p>
-      <ul>
+        item{{ tag.item_set.count|pluralize }}:
+       </dt>      
         {% for item in tag.item_set.all %}
-         <li><a href="{{item.get_absolute_url}}">
+         <dd><a href="{{item.get_absolute_url}}">
            {{ item.name }}
-         </a></li>
-       {% endfor %}
-     </ul     
+         </a></dd>
+       {% endfor %}     
+     </dl>
+       
     </section>
  {% endif %}
 
