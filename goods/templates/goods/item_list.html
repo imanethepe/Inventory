@@ -23,21 +23,16 @@ Created on Sun Oct 22 14:15:00 2023
    {% for item in item_list %}
     <li>
       <a href="{{item.get_absolute_url}}">
-   {{ item.name }} - Quantity: {{item.quantity}} - Total Estimated Price: {{item.total_item_estimated_price}}</a>
-<!-- <ul> -->
-<!--         <li>-->
-<!--            <a href="{{item.get_update_url}}">-->
-<!--              Update Item</a></li>-->
-<!--         <li>-->
-<!--            <a href="{{item.get_delete_url}}">-->
-<!--              Delete Item</a></li>-->
-<!--       </ul>  -->
+   {{ item.name }} - Quantity: {{item.quantity}} 
+   - Total Estimated Price in {{item.currency}}: 
+   {{item.total_item_estimated_price}}</a>   
     </li>
    {% empty %}
      <li><em>No Items in  list</em></li>
    {% endfor %}
    {% for key, value in data.items %}
- <h4>Total Inventory Value: {{value}}</h4> 
+ <h4>Total Inventory Value in {{currency}}: {{value|floatformat:2}}</h4> 
    {% endfor %}
+   
 </ul>
 {% endblock %}

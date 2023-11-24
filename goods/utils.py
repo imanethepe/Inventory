@@ -53,6 +53,7 @@ class ObjectUpdateMixin:
         bound_form = self.form_class(
             request.POST, instance=obj)
         if bound_form.is_valid():
+            self.model.objects.all().update(currency=obj.currency)
             new_object = bound_form.save()
             return redirect(new_object)
         else:

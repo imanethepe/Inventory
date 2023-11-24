@@ -27,12 +27,17 @@ class ItemList(View):
         Item.objects.all().update(
             total_item_estimated_price=F('estimated_price') *
             F('quantity'))
-
         data = Item.objects.aggregate(Sum('total_item_estimated_price'))
+
+        data_currency = Item.objects.annotate(data_currency=F('currency'))[0]
+        currency = data_currency.data_currency
+
         return render(
             request,
             'goods/item_list.html',
-            {'item_list': Item.objects.all(), 'data': data})
+            {'item_list': Item.objects.all(),
+             'data': data,
+             'currency': currency})
 
 
 class TagDetail(View):

@@ -30,6 +30,13 @@ class Tag(models.Model):
 
 
 class Item(models.Model):
+
+    CURRENCIES = {
+        ('EUR', 'EUR'),
+        ('USD', 'USD'),
+        ('CAD', 'CAD')
+        }
+
     name = models.CharField(
         max_length=31, db_index=True)
     slug = models.SlugField(
@@ -42,6 +49,9 @@ class Item(models.Model):
         decimal_places=2, max_digits=5, default=0.000)
     total_item_estimated_price = models.DecimalField(
           decimal_places=2, max_digits=5, default=0.000)
+    currency = models.CharField(
+        max_length=255,
+        default=0, choices=CURRENCIES)
     entry_date = models.DateField(
         'date of entry')
     tags = models.ManyToManyField(Tag, blank=True)
